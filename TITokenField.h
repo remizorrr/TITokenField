@@ -138,6 +138,7 @@ typedef enum {
 @property (nonatomic, strong) UIColor * textColor UI_APPEARANCE_SELECTOR;
 @property (nonatomic, strong) UIColor * highlightedTextColor UI_APPEARANCE_SELECTOR;
 @property (nonatomic, strong) UIColor * tintColor UI_APPEARANCE_SELECTOR;
+@property (nonatomic, strong) UIColor * color UI_APPEARANCE_SELECTOR;
 @property (nonatomic, assign) TITokenAccessoryType accessoryType;
 @property (nonatomic, assign) CGFloat maxWidth;
 

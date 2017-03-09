@@ -560,6 +560,11 @@ NSString * const kTextHidden = @"\u200D"; // Zero-Width Joiner
     _tokenLimit = -1;
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    [self layoutTokensAnimated:NO];
+}
+
 #pragma mark Property Overrides
 - (void)setFrame:(CGRect)frame {
 	[super setFrame:frame];
@@ -836,8 +841,8 @@ NSString * const kTextHidden = @"\u200D"; // Zero-Width Joiner
 - (CGFloat)layoutTokensInternal {
 	
 	CGFloat topMargin = floor(self.font.lineHeight * 4 / 7);
-	CGFloat leftMargin = self.leftViewWidth + 12;
 	CGFloat hPadding = 8;
+    CGFloat leftMargin = self.leftViewWidth?(self.leftViewWidth + 12):hPadding;
 	CGFloat rightMargin = self.rightViewWidth + hPadding;
 	CGFloat lineHeight = ceilf(self.font.lineHeight) + topMargin + 5;
 	
@@ -1323,7 +1328,7 @@ CGPathRef CGPathCreateDisclosureIndicatorPath(CGPoint arrowPointFront, CGFloat h
 	
 	CGFloat locations[2] = {0, (drawHighlighted ? 0.9 : 0.6)};
     CGFloat highlightedComp[8] = {red, green, blue, 0.7, red, green, blue, 1};
-    CGFloat nonHighlightedComp[8] = {red, green, blue, 0.15, red, green, blue, 0.3};
+    CGFloat nonHighlightedComp[8] = {red, green, blue, 1.0, red, green, blue, 1.0};
 	
 	CGGradientRef gradient = CGGradientCreateWithColorComponents(colorspace, (drawHighlighted ? highlightedComp : nonHighlightedComp), locations, 2);
 	CGContextDrawLinearGradient(context, gradient, CGPointZero, endPoint, 0);
